@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
 	{
 		multiply(&big_int, i, &big_result);
 		print_big_int(&big_int);
-		printf(" * %ld = ", i);
+		printf(" * %d = ", i);
 		copy_big_int(&big_result, &big_int);
 		print_big_int(&big_int);
 		printf("\n");
@@ -101,7 +101,7 @@ int main(int argc, char *argv[])
 	{
 		print_big_int(&big_int);
 		divide(&big_int, i, &big_result);
-		printf(" / %ld = ", i);
+		printf(" / %d = ", i);
 		copy_big_int(&big_result, &big_int);
 		print_big_int(&big_int);
 		printf("\n");
@@ -110,6 +110,7 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
+//Converts the string in an big Integer.
 int strtobig_int(const char *str, int len, struct BigInt *big_int)
 {
 	for (int i = 0; i < len; i++)
@@ -121,6 +122,7 @@ int strtobig_int(const char *str, int len, struct BigInt *big_int)
 	return big_int->digits_count;
 }
 
+//prints the big Integer.
 void print_big_int(const struct BigInt *big_int)
 {
 	for (int i = 0; i < big_int->digits_count; i++)
@@ -129,6 +131,7 @@ void print_big_int(const struct BigInt *big_int)
 	}
 }
 
+
 void multiply(const struct BigInt *big_int, int factor, struct BigInt *big_result)
 {
 	int overflow = 0;
@@ -136,9 +139,9 @@ void multiply(const struct BigInt *big_int, int factor, struct BigInt *big_resul
 	for (int i = big_int->digits_count-1; i >= 0; i--)
 	{
 		current_val = (big_int->the_int[i]*factor) + overflow;
-		overflow = crnt_val / 10;
-		current_val = crnt_val % 10;
-		big_result->the_int[i + 1] = crnt_val; //place i + 1 if 1 more character is needed
+		overflow = current_val / 10;
+		current_val = current_val % 10;
+		big_result->the_int[i + 1] = current_val; //place i + 1 if 1 more character is needed
 	}
 
 	if(overflow > 0)
@@ -156,6 +159,7 @@ void multiply(const struct BigInt *big_int, int factor, struct BigInt *big_resul
 	}
 }
 
+//Copies the Value of the first BigInt struct to an another.
 void copy_big_int(const struct BigInt *from, struct BigInt *to){
 	to->digits_count = from->digits_count;
 
