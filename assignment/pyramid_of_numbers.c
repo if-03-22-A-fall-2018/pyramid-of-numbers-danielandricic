@@ -87,6 +87,7 @@ int main(int argc, char *argv[])
 
 	strtobig_int(a_string, strlen(a_string), &big_int);
 
+	//Multiplizieren mit 2 bis 9
 	for (int i = 2; i <= 9; i++)
 	{
 		multiply(&big_int, i, &big_result);
@@ -97,6 +98,7 @@ int main(int argc, char *argv[])
 		printf("\n");
 	}
 
+	//Dividieren mit 2 bis 9
 	for (int i = 2; i <= 9; i++)
 	{
 		print_big_int(&big_int);
